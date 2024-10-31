@@ -15,4 +15,5 @@ This project simulates Grover's and Shor's quantum algorithms using Qiskit.
 - Matplotlib
 
 ## Running the Project
-1. Install Qiskit and Matplotlib:
+1. Install Qiskit and Matplotlib
+2. RUN THE MAIN.PY
