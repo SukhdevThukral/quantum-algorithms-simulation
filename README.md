@@ -1,4 +1,4 @@
-# Quantum Algorithms Simulation Project
+# Quantum Algorithms Simulation Project (STILL IN DEVELOPMENT PHASE)
 
 This project simulates Grover's and Shor's quantum algorithms using Qiskit.
 
