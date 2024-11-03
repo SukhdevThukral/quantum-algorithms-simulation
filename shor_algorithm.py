@@ -1,4 +1,3 @@
-from qiskit import QuantumCircuit
 from math import gcd
 import numpy as np
 
@@ -11,23 +10,36 @@ def find_period(a, N):
 
 def run_shor_algorithm(N):
     """ Classical approximation of Shor's factoring algorithm """
-    a = np.random.randint(2, N)
-    if gcd(a, N) != 1:
-        return f"{a} is a factor of {N}"
+    for _ in range(10):  # Retry up to 10 times to increase the chance of success
+        a = np.random.randint(2, N)
+        if gcd(a, N) != 1:
+            factor = gcd(a, N)
+            if factor != 1 and factor != N:
+                return f"{factor} is a factor of {N}"
+        
+        # Find the period r of a modulo N
+        r = find_period(a, N)
+        if r % 2 != 0:
+            continue  # Retry if period is odd
+        
+        # potential factors
+        factor1 = gcd(pow(a, r//2) - 1, N)
+        factor2 = gcd(pow(a, r//2) + 1, N)
+        
+        if factor1 != 1 and factor1 != N and N % factor1 == 0:
+            return factor1, N // factor1
+        if factor2 != 1 and factor2 != N and N % factor2 == 0:
+            return factor2, N // factor2
 
-    r = find_period(a, N)
-    if r % 2 != 0:
-        return "Period is odd; retrying Shor's algorithm"
+    return "Failed to find factors; retry Shor's algorithm"
 
-    factor1 = gcd(a**(r//2) - 1, N)
-    factor2 = gcd(a**(r//2) + 1, N)
-    
-    if factor1 == 1 or factor2 == 1:
-        return "Factors not found; retry Shor's algorithm"
-    return factor1, factor2
-
-#usage
 if __name__ == "__main__":
-    N = 15  # Replace with the number you want to factorize
-    result = run_shor_algorithm(N)
-    print("Factors of", N, ":", result)
+    try:
+        N = int(input("Enter the number to factorize: "))
+        if N < 2:
+            print("Please enter a valid number greater than 1.")
+        else:
+            result = run_shor_algorithm(N)
+            print(f"Factors of {N}: {result}")
+    except ValueError:
+        print("Invalid input! Please enter an integer.")
