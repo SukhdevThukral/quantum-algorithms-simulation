@@ -1,7 +1,8 @@
 # Quantum Algorithms Simulation Project
 
-⚠️ BEWARE!!! THIS IS STILL IN DEVELOPMENT PHASE AND IT MIGHT NOT GIVE DESIRED OUTPUTS YET - 
-This project simulates Grover's and Shor's quantum algorithms using Qiskit.
+⚠️ BEWARE!!! THIS IS STILL IN DEVELOPMENT PHASE AND IT MIGHT NOT GIVE DESIRED OUTPUTS YET : LOW ACCURACIES
+⚠️ BEWARE!!! I HAVE REMOVED SHOR'S ALGORITHM FORM THE MAIN MENU SINCE IT HAS A LOT OF ISSUES YET  - 
+This project simulates Grover's, Shor's, Amplitude Amplication & QFT quantum algorithms using Qiskit in Python
 
 ## Files
 - `main.py`: Entry point for running the simulations.
